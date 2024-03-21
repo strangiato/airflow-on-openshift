@@ -16,8 +16,9 @@ default_args = {
 dag = DAG(
     'kubernetes_pod_operator',
     default_args=default_args,
-    schedule_interval=None
+    schedule_interval=None,
     # schedule_interval=timedelta(minutes=10)
+    access_control = {'my-test-role': {'can_read', 'can_edit', 'can_delete'}},
 )
 
 start = DummyOperator(task_id='run_this_first', dag=dag)
